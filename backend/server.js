@@ -10,9 +10,12 @@ const authRoutes = require("./routes/auth");
 
 dotenv.config();
 connectDB();
-
+const allowedOrigins = [
+    "http://localhost:5173", // Allow local development
+    "https://vn-portfolio-eazy-byts.vercel.app", // Deployed frontend
+  ];
 const app = express();
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
 app.use("/api/blogs", blogRoutes);
