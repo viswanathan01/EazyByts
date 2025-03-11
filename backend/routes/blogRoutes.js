@@ -4,7 +4,6 @@ const upload = require("../middleware/multer");
 const cloudinary = require("../config/cloudinary");
 const router = express.Router();
 
-// Get all blogs (Public)
 router.get("/", async (req, res) => {
   try {
     const blogs = await Blog.find();
@@ -14,7 +13,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Admin only: Create a new blog
 router.post("/", upload.single("thumbnail"), async (req, res) => {
   try {
     if (req.file) {
@@ -29,7 +27,6 @@ router.post("/", upload.single("thumbnail"), async (req, res) => {
   }
 });
 
-// Admin only: Update a blog
 router.put("/:id", upload.single("thumbnail"), async (req, res) => {
   try {
     if (req.file) {
@@ -43,7 +40,6 @@ router.put("/:id", upload.single("thumbnail"), async (req, res) => {
   }
 });
 
-// Admin only: Delete a blog
 router.delete("/:id", async (req, res) => {
   try {
     await Blog.findByIdAndDelete(req.params.id);

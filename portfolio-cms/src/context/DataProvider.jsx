@@ -10,9 +10,10 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const blogRes = await axios.get("http://localhost:5000/api/blogs");
-      const projectRes = await axios.get("http://localhost:5000/api/projects");
-      const skillRes = await axios.get("http://localhost:5000/api/skills");
+      const API_URL = import.meta.env.VITE_API_URL;
+      const blogRes = await axios.get(`${API_URL}/api/blogs`);
+      const projectRes = await axios.get(`${API_URL}/api/projects`);
+      const skillRes = await axios.get(`${API_URL}/api/skills`);
 
       setBlogs(blogRes.data);
       setProjects(projectRes.data);

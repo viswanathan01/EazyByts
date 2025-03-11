@@ -1,9 +1,9 @@
 const express = require("express");
 const Project = require("../models/Project");
-const upload = require("../middleware/multer"); // Multer middleware
-const cloudinary = require("../config/cloudinary"); // Cloudinary config
+const upload = require("../middleware/multer"); 
+const cloudinary = require("../config/cloudinary"); 
 const router = express.Router();
-// Get all projects
+
 router.get("/", async (req, res) => {
   try {
     const projects = await Project.find();
@@ -14,7 +14,6 @@ router.get("/", async (req, res) => {
 });
 
 
-// Create a new blog with image upload
 router.post("/", upload.single("thumbnail"), async (req, res) => {
   try {
     let imageUrl = "";
@@ -34,11 +33,9 @@ router.post("/", upload.single("thumbnail"), async (req, res) => {
   }
 });
 
-// Update a blog with image upload
 router.put("/:id", upload.single("thumbnail"), async (req, res) => {
   try {
-    let imageUrl = req.body.thumbnail; // Keep the old image if no new image is uploaded
-
+    let imageUrl = req.body.thumbnail; 
     if (req.file) {
       const result = await cloudinary.uploader.upload(req.file.path, {
         folder: "blogs",
@@ -59,7 +56,6 @@ router.put("/:id", upload.single("thumbnail"), async (req, res) => {
 });
 
 
-// Delete a project
 router.delete("/:id",  async (req, res) => {
   try {
     await Project.findByIdAndDelete(req.params.id);

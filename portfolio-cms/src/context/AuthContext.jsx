@@ -14,8 +14,9 @@ export const AuthProvider = ({ children }) => {
       delete axios.defaults.headers.common['Authorization'];
     }
   }, [token]);
+  
+  const API_URL = `${import.meta.env.VITE_API_URL}/api/auth`;
 
-  const API_URL = 'http://localhost:5000/api/auth';
   const login = async (email, password) => {
     try {
       const res = await axios.post(`${API_URL}/login`, { email, password });
