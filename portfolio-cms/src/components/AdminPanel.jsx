@@ -55,7 +55,7 @@ export default function AdminPanel() {
       };
       
 
-      const url = `http://localhost:5000/api/${activeTab}`;
+      const url = `${import.meta.env.VITE_API_URL}/api/${activeTab}`;
       const method = editingItem ? "PUT" : "POST";
       const endpoint = editingItem ? `${url}/${editingItem._id}` : url;
 
@@ -85,7 +85,7 @@ export default function AdminPanel() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/${activeTab}/${id}`, { method: "DELETE" });
+      await fetch(`${import.meta.env.VITE_API_URL}/api/${activeTab}/${id}`, { method: "DELETE" });
       fetchData();
     } catch (error) {
       console.error("Error deleting item:", error);
