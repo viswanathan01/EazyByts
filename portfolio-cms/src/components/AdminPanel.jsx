@@ -31,9 +31,9 @@ export default function AdminPanel() {
   const fetchData = async () => {
     try {
       const [blogData, projectData, skillData] = await Promise.all([
-        fetch("http://localhost:5000/api/blogs").then((res) => res.json()),
-        fetch("http://localhost:5000/api/projects").then((res) => res.json()),
-        fetch("http://localhost:5000/api/skills").then((res) => res.json()),
+        fetch(`${import.meta.env.VITE_API_URL}/api/blogs`).then((res) => res.json()),
+        fetch(`${import.meta.env.VITE_API_URL}/api/projects`).then((res) => res.json()),
+        fetch(`${import.meta.env.VITE_API_URL}/api/skills`).then((res) => res.json()),
       ]);
       setBlogs(blogData);
       setProjects(projectData);
@@ -42,6 +42,7 @@ export default function AdminPanel() {
       console.error("Error fetching data:", error);
     }
   };
+  
 
   const handleSubmit = async () => {
     try {
