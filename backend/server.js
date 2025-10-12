@@ -12,7 +12,9 @@ dotenv.config();
 connectDB();
 const allowedOrigins = [
     "http://localhost:5173", // Allow local development
-    "https://vn-portfolio-eazy-byts.vercel.app", // Deployed frontend
+    "https://vn-portfolio-eazy-byts.vercel.app", 
+    "https://v-n-portfolio.vercel.app",
+    // Deployed frontend
   ];
 const app = express();
 app.use(cors({ origin: allowedOrigins, credentials: true }));
